@@ -22,6 +22,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED 20)
 
 # define that stores the actual source directory
 set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(SOURCE_INTEROP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src-interop)
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(HXCPP_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/hxcpp/src)
 set(HXCPP_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/hxcpp/include)
@@ -31,6 +32,7 @@ add_compile_options(-frtti -fexceptions -Wno-invalid-offsetof)
 add_compile_options(-O3)
 
 # recursively get all src files
+RECURSE_FILES(interop_cpp_file_list ${SOURCE_INTEROP_DIR}/*.cpp)
 RECURSE_FILES(haxe_cpp_file_list ${HXCPP_SOURCE_DIR}/*.cpp)
 RECURSE_FILES(cpp_file_list ${SOURCE_DIR}/*.cpp)
 RECURSE_FILES(c_file_list ${SOURCE_DIR}/*.c)
@@ -39,6 +41,7 @@ RECURSE_FILES(c_file_list ${SOURCE_DIR}/*.c)
 add_library(
         ${COMPILE_ID}
         SHARED
+        ${interop_cpp_file_list}
         ${haxe_cpp_file_list}
         ${cpp_file_list}
         ${c_file_list}

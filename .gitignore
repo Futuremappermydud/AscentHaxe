@@ -1,0 +1,5 @@
+quest-build/src/*
+quest-build/include/*
+quest-build/build/*
+quest-build/.cache/*
+Bin/*
