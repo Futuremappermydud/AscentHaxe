@@ -1,0 +1,4 @@
+-cp src
+-main AscentLang
+-cpp bin/cpp
+--define no-compilation
