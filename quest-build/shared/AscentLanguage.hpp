@@ -1,7 +1,7 @@
 #pragma once
+#include "AscentVariableMap.hpp"
 
 #include <string>
 namespace AscentLanguage {
-    void initAscent();
-    float Evaluate(std::string expression);
+    float Evaluate(std::string expression, AscentVariableMap* variableMap, bool cache, debug);
 }
