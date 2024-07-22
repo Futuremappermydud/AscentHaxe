@@ -228,9 +228,7 @@ class VariableTokenizer extends Tokenizer {
 		var args = functionDefinition?.args == null ? [] : functionDefinition.args;
 
 		var stringBuf:StringBuf = new StringBuf();
-		Sys.println(reader.Peek());
-		while (Utility.searchForPotential(reader.PeekChar(), variableDefintions)
-			|| Utility.searchForPotentialArray(reader.PeekChar(), args)) {
+		while (!Lambda.exists(variableDefintions, function(x:String) { return x == stringBuf.toString(); }) && !Lambda.exists(args, function(x:String) { return x == stringBuf.toString(); })) {
 			stringBuf.add(reader.Read());
 			if (reader._position >= reader._length) {
 				break;
@@ -284,7 +282,6 @@ class FunctionTokenizer extends Tokenizer {
 				break;
 			}
 		}
-        Sys.println(stringBuf.toString() + ' ' + reader.Peek());
 		return new Token(TokenType.Function, stringBuf.toString());
 	}
 
